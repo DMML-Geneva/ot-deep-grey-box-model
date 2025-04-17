@@ -51,7 +51,63 @@ python src/forward_models/pendulum/simulate_from_conf.py --mode=one-to-many --ou
 ```
 
 ### Advection-convection Diffusion
-DATASET
+
+ - One to one maps
+```
+python -m src.forward_models.advdiff.generate_data \
+    --n-grids 20 --len-episode 50 \
+    --dx 0.1 --dt 0.02 \
+    --n-samples 1000 \
+    --n-stoch-samples 1 \
+    --range-init-mag 0.5 1.5 \
+    --range-dcoeff 1e-2 1e-1 \
+    --range-ccoeff 1e-1 1e-1 \
+    --method rk4 \
+    --fixed_stoch_samples 0 \
+    --outdir=./datasets/forward_models/advdiff/one_to_one/training \
+    --seed 1234
+
+python -m src.forward_models.advdiff.generate_data \
+    --n-grids 20 --len-episode 50 \
+    --dx 0.1 --dt 0.02 \
+    --n-samples 250 \
+    --n-stoch-samples 1 \
+    --range-init-mag 0.5 1.5 \
+    --range-dcoeff 1e-2 1e-1 \
+    --range-ccoeff 1e-1 1e-1 \
+    --method rk4 \
+    --fixed_stoch_samples 0 \
+    --outdir=./datasets/forward_models/advdiff/one_to_one/testing \
+    --seed 1
+```
+ - One to many maps
+```
+python -m src.forward_models.advdiff.generate_data \
+    --n-grids 20 --len-episode 50 \
+    --dx 0.1 --dt 0.02 \
+    --n-samples 1500 \
+    --n-stoch-samples 5 \
+    --range-init-mag 0.5 1.5 \
+    --range-dcoeff 1e-2 1e-1 \
+    --range-ccoeff 1e-1 1e-1 \
+    --method rk4 \
+    --fixed_stoch_samples 0 \
+    --outdir=./datasets/forward_models/advdiff/one_to_many/training \
+    --seed 1234
+
+python -m src.forward_models.advdiff.generate_data \
+    --n-grids 20 --len-episode 50 \
+    --dx 0.1 --dt 0.02 \
+    --n-samples 500 \
+    --n-stoch-samples 5 \
+    --range-init-mag 0.5 1.5 \
+    --range-dcoeff 1e-2 1e-1 \
+    --range-ccoeff 1e-1 1e-1 \
+    --method rk4 \
+    --fixed_stoch_samples 0 \
+    --outdir=./datasets/forward_models/advdiff/one_to_many/testing \
+    --seed 1
+```
 ### Reaction Diffusion
 Change accordingly the `src/forward_models/reactdiff/params.yaml` conf file (e.g `seed` and `k`) for generating the training and the test dataset.
 
