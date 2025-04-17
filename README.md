@@ -114,8 +114,6 @@ Change accordingly the `src/forward_models/reactdiff/params.yaml` conf file (e.g
 ```python src/forward_models/reactdiff/make_dataset.py```
 
 
-## Model Checkpoints and Example of Generations
-
 ## Training the model
 Activate your conda environemnt
 `source activate ot-miss` 
@@ -282,11 +280,11 @@ python src/train/__hydra__launcher.py -m algorithm_name=wgans \
 			--max_x_samples=20000 --max_x_batch_size=5000 --seed=1 --device=cuda --with_x_sims=1``` # for WGAN-BB with_x_sims=0
 	- MMD:
 		- ```python src/evaluation/evaluator.py --dir_models=multirun/pendulum/two_modes/stable_runs/odenet \
-		--test_file_path=./datasets/forward_models/pendulum/one_to_many/many_modes/testing/data_b59d1a9ff62efcb28bb694d2b167d8fe \
-		--output_dir=./outputs/best_models/pendulum/two-modes/joint/mmd/ot/  \
-		--hash_exp_name=b0af176f7b1d439550e605188cbc1138 --phys_model=pendulum \
-		--params_dim=1 --z_size=6 \
-		--type_evals=joint_score --metric=mmd --max_x_samples=10000 --max_x_batch_size=1500 --seed=1 &```	
+			--test_file_path=./datasets/forward_models/pendulum/one_to_many/many_modes/testing/data_b59d1a9ff62efcb28bb694d2b167d8fe \
+			--output_dir=./outputs/best_models/pendulum/two-modes/joint/mmd/ot/  \
+			--hash_exp_name=b0af176f7b1d439550e605188cbc1138 --phys_model=pendulum \
+			--params_dim=1 --z_size=6 \
+			--type_evals=joint_score --metric=mmd --max_x_samples=10000 --max_x_batch_size=1500 --seed=1 &```	
 
 
 ### One-to-many Pendulum
@@ -484,7 +482,8 @@ python src/train/__hydra__launcher.py -m algorithm_name=knot \
 	x_max_sims_budg=1500000 \
 	max_epochs=100000
 ```
- - OT-Black-box Model - Unet ```
+ - OT-Black-box Model - Unet 
+ ```
 	python src/train/__hydra__launcher.py -m algorithm_name=knot \
 	model=reactdiff_nnet \
 	model.type=det z_size=1 z_dim=0 \
@@ -500,7 +499,8 @@ python src/train/__hydra__launcher.py -m algorithm_name=knot \
 	x_max_sims_budg=1500000 \
 	max_epochs=100000 
 	```
- - WGANS - GreyBox model ```
+ - WGANS - GreyBox model 
+ ```
 	python src/train/__hydra__launcher.py -m algorithm_name=wgans \
 	model=reactdiff_nnet model.activation=elu \
 	model.type=det z_size=1 z_dim=0 \
@@ -518,7 +518,8 @@ python src/train/__hydra__launcher.py -m algorithm_name=knot \
 	max_epochs=10000
 	```
 
- - WGANs BB ```
+ - WGANs BB 
+ ```
  	python src/train/__hydra__launcher.py -m algorithm_name=wgans \
 	model=reactdiff_nnet model.activation=elu \
 	model.type=det z_size=1 z_dim=0 \
@@ -535,7 +536,8 @@ python src/train/__hydra__launcher.py -m algorithm_name=knot \
 	lr=[1e-4,1e-4] betas_lr=[0.,0.999] \
 	x_max_sims_budg=1500000 \
 	max_epochs=10000
-	```
+```
+
 
 Evaluation
 ```
