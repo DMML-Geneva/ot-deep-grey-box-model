@@ -1,0 +1,26 @@
+
+a_range: [0.001, 0.002] #[0.001, 0.002]
+b_range: [0.003, 0.007] #[0.003, 0.007]
+k:  [0.003, 0.005] # one-map: 0.005, many-maps: [0.003, 0.005]
+t_span: [0.0, 1.5]
+grid_size: 32 # both for X and Y
+mesh_step: 0.06451612903 # 2/31
+
+sigma: 0.0
+
+len_episode: 16
+ode_solver: 'rk4'
+ode_stepsize: 0.001
+
+n_samples: 125 #
+n_stoch_samples: 5 # one-map:0, many-maps: 5
+batch_size: 64 # -1 means no mini-batch
+seed: 13
+
+model:
+  odeint:
+    dt: 0.1 # should be set in accordance with data.tspan & data.len_episode
+    #dmesh_step: *MESH_STEP
+    method: 'rk4'
+    rk4:
+      step_size: 0.1

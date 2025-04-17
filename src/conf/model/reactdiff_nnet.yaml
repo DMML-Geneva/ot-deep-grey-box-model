@@ -1,0 +1,16 @@
+model_name: "knot"
+type: "det"
+phys_model: "reactdiff" # for black-box model use none
+nnet_arch: "odenet"
+adjoint_solver: 1 #0: false, 1: True
+ode_solver_cfg: 
+  method: "rk4" # dopri5
+  atol: 1e-5
+  rtol: 1e-5
+  
+activation: "elu" #leaky_relu, sofplus, elu.
+h_layers: 1
+
+discriminator:
+  type: "unet"
+#  h_layers: [250,100,50]

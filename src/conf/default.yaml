@@ -1,0 +1,8 @@
+defaults:
+  - knot_conf 
+
+#  - joblib-options
+#  - override hydra/launcher: joblib # required for joblib (available via pip)
+#
+#  - submitit-slurm-options
+#  - override hydra/launcher: submitit_slurm # required for submitit (available via pip)

@@ -1,0 +1,28 @@
+type: "det" # det or stoch
+phys_model: "pendulum" # for black-box model use none
+nnet_arch: "odenet" # mlp, lstm, odenet
+c_embed_dim: 2
+adjoint_solver: True
+activation: "elu"
+ode_solver: "rk4"
+time_dim_flag: false
+ode_stepsize: 0.1
+h_layers: [64,64]
+with_drop_out: true
+with_layer_norm: true
+
+aux_conf:
+  f_aux_1:
+    h_layers: [128,128]
+    enable: false
+    activation: elu
+    in_loop_ode: false # e.g f_aux[solve(f_p + f_\theta ==0)]
+  f_aux_2:
+    h_layers: [100,100,100,100]
+    enable: false
+    activation: relu
+    in_loop_ode: true # e.g  solve[f_aux(f_p) == 0)]
+
+discriminator:
+  type: "mlp" #conv1dresnet
+  h_layers: [250,100,100,50]

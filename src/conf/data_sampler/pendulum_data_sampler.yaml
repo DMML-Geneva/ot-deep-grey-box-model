@@ -1,0 +1,45 @@
+name: "pendulum"
+online: true
+# If online false, the following parameters are used
+datadir: "./datasets/forward_models/pendulum/one_to_one/"
+dataname_train_labeled_sims: "training/data_"
+dataname_train_unlabeled_y: "training/data_f097c1d3009fda1b72a3c6595f5c9110"
+dataname_val_unlabeled_y: "testing/data_6a17c4c8d5fdce009fe548e5ac173380"
+dataname_test_x: ""
+dataname_test_y: ""
+max_train_size: -1
+
+# If online true, the following parameters are used
+init_cond_sampler:
+  type: "uniform"
+  lower_bound: [-1.57, 0] # [x(0), alpha=x'(0)]
+  upper_bound: [1.57, 0] # [x(0), alpha=x'(0)]
+  range_init: [-1.57, 1.57]
+
+phys_params_sampler:
+  x:
+    type: "uniform"
+    lower_bound: [0.75] # [omega]
+    upper_bound: [3.14]
+    range_omega: [0.75, 3.14]
+    params_dim: 1
+
+  #y:
+  #  type: "uniform"
+  #  lower_bound: [0.2, 0., 1.] # \omega, \gamma, A, \phi(f)
+  #  upper_bound: [1.5, 0., 1.] # \omega, \gamma, A, \phi(f)
+  #  range_gamma: [0.2, 1.5] #
+  #  range_A: [0., 0.] 
+  #  range_f: [1., 1.]
+  #  z_size: 10
+    
+
+  n_val_batches: 10 # Number of batches to generate for validation
+
+forward_model:
+  name: "pendulum"
+  dt: 0.1 
+  f_evals: 50
+  noise_loc: 0.0
+  noise_std: 0.0 # for source simulations (x)
+  method: "rk4" # for x and y simulations

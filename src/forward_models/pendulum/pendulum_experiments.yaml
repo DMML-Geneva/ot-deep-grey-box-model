@@ -1,0 +1,235 @@
+
+# List a dictionary of experiments for complete models with friction and external forces
+incomplete:
+  pendulum-1:
+    len-episode: 50
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0, 0]
+    range-A: [0., 0.]
+    range-f: [0, 0]
+
+one-to-one:
+  # friction with uniform samples
+  friction-pendulum-1:
+    len-episode: [50]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [1.2, 1.2]
+    range-A: [0., 0.]
+    range-f: [0., 0.]
+    one-to-one: 54321
+    noise-std: 0.0
+
+  friction-pendulum-2:
+    len-episode: 200
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0.6, 0.6]
+    range-A: [0., 0.]
+    range-f: [1, 1]
+    one-to-one: 54321
+
+  friction-pendulum-3:
+    len-episode: 200
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [1.0, 1.0]
+    range-A: [0., 0.]
+    range-f: [1, 1]
+    one-to-one: 54321  
+  
+  friction-pendulum-4:
+    len-episode: 200
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [1.5, 1.5]
+    range-A: [0., 0.]
+    range-f: [1, 1]
+    one-to-one: 54321
+
+  # apphynity 1
+  friction-pendulum-5: 
+    len-episode: 20
+    range-init: [-1.57, 1.57] # to double check
+    range-omega: [0.523598776, 0.523598776] # 2 \pi / 12
+    range-gamma: [0.2, 0.2]
+    range-A: [0., 0.]
+    range-f: [1, 1]
+    one-to-one: 4321 # ?
+
+  # NOT GOOD THIS ONE
+  external-force-pendulum-6:
+    len-episode: [200]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1., 1.]
+    range-f: [1., 1.]
+  
+  external-force-pendulum-7:
+    len-episode: [200]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1., 1.]
+    range-f: [0.95, 0.95]
+
+  external-force-pendulum-8:
+    len-episode: [200]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1.5, 1.5]
+    range-f: [1.2, 1.2]
+
+  external-force-pendulum-9:
+    len-episode: [200]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1., 1.]
+    range-f: [1.2, 1.2]
+    
+  external-force-pendulum-10: # just less function evaluation
+    len-episode: [20]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1., 1.]
+    range-f: [1.2, 1.2]
+
+  external-force-pendulum-11: # just less function evaluation
+    len-episode: [50]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1., 1.]
+    range-f: [1.2, 1.2]
+    one-to-one: 54321
+
+
+
+one-to-many:
+  friction-pendulum-1:
+    len-episode: 200
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0.6, 1.5]
+    range-A: [0., 0.]
+    range-f: [1, 1]
+    single-sample-parameters: 1
+    n-stoch-samples: 6
+
+  # apphynity 2: simulate 500, 50(val), 50 (test), DOPRI5. With 20 first steps given.
+  friction-pendulum-2: 
+    len-episode: 20
+    range-init: [-1.57, 1.57] # to double check
+    range-omega: [0.628318531, 2.094395102] # [2\pi / 10, 2 \pi / 3]
+    range-gamma: [0.0, 0.5]
+    range-A: [0., 0.]
+    range-f: [1, 1]
+    single-sample-parameters: 0
+
+  # 2 mode friction with no noise
+  friction-pendulum-3: 
+    len-episode: 50
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0.6, 1.5]
+    range-A: [0., 0.]
+    range-f: [1, 1]
+    noise-std: 0.0
+    single-sample-parameters: 1
+    n-stoch-samples: 6
+
+  external-force-pendulum-4:
+    len-episode: [200]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1.5, 1.5] # same force, only the phase changes
+    range-f: [1.2, 2]
+    single-sample-parameters: 1
+    n-stoch-samples: 6
+
+  external-force-pendulum-5:
+    len-episode: [200]
+    range-init: [-1.57, 1.57]
+    range-omega: [0.785, 3.14]
+    range-gamma: [0., 0.]
+    range-A: [1.5, 2] # different force magnitude and phase
+    range-f: [1.2, 2]
+    single-sample-parameters: 1
+    n-stoch-samples: 12
+
+  friction-pendulum-6:
+    range-omega: [0.785, 3.14]
+    len-episode: [50]
+    range-gamma: [0.6, 0.8, 1, 1.5]
+    range-A: [0., 0., 0., 0.]
+    range-f: [0., 0., 0., 0.]
+    gamma-dist: "categorical"
+    A-dist: "categorical"
+    f-dist: "categorical"
+    single-sample-parameters: 1
+    single-sample-params-probs: [0.25, 0.25, 0.25, 0.25]
+    n-stoch-samples: 16
+
+  # 4-mode friction categorical samples
+  friction-pendulum-7:
+    range-omega: [0.785, 3.14]
+    len-episode: [50]
+    range-gamma: [0.6, 0.8, 1, 1.5]
+    range-A: [0., 0., 0., 0.]
+    range-f: [0., 0., 0., 0.]
+    gamma-dist: "categorical"
+    A-dist: "categorical"
+    f-dist: "categorical"
+    single-sample-parameters: 1
+    single-sample-params-probs: [0.25, 0.25, 0.25, 0.25]
+    n-stoch-samples: 8
+    noise-std: 0.0
+  
+  # friction with uniform samples
+  friction-pendulum-8:
+    range-omega: [0.785, 3.14]
+    len-episode: [50]
+    range-gamma: [0.2, 1.5]
+    range-A: [0., 0.]
+    range-f: [0., 0.]
+    n-stoch-samples: 16
+  
+  # friction with uniform samples
+  friction-pendulum-9:
+    range-omega: [0.785, 3.14]
+    len-episode: [50]
+    range-gamma: [0.2, 1.5]
+    range-A: [0., 0.]
+    range-f: [0., 0.]
+    n-stoch-samples: 80
+    noise-std: 0.0
+
+  # friction with uniform samples
+  friction-pendulum-10:
+    range-omega: [0.785, 3.14]
+    len-episode: [50]
+    range-gamma: [0.2, 1.5]
+    range-A: [0., 0.]
+    range-f: [0., 0.]
+    n-stoch-samples: 20
+    noise-std: 0.0
+
+  # friction with uniform samples
+  friction-pendulum-11:
+    range-omega: [0.785, 3.14]
+    len-episode: [50]
+    range-gamma: [0.2, 1.5]
+    range-A: [0., 0.]
+    range-f: [0., 0.]
+    n-stoch-samples: 10
+    noise-std: 0.0
+
+  
+
+

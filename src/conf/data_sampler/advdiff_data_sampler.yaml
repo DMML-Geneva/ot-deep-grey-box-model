@@ -1,0 +1,38 @@
+
+name: "advdiff"
+online: true
+# If online false, the following parameters are used
+datadir: "./datasets/forward_models/advdiff/one_to_one/"
+dataname_train_labeled_sims: "training/data_"
+dataname_train_unlabeled_y: "training/data_2753c3a8d5f6ecb09344a6fb2cebb32b"
+dataname_val_unlabeled_y: "testing/data_f4a7d4f76b97425642cb42e9a4d5a5b0"
+dataname_test_x: ""
+dataname_test_y: ""
+max_train_size: -1
+
+# If online true, the following parameters are used
+init_cond_sampler:
+  type: "uniform"
+  lower_bound: [0.5] # [x(0), alpha=x'(0)]
+  upper_bound: [1.5] # [x(0), alpha=x'(0)]
+  range_init_mag: [0.5, 1.5]
+
+phys_params_sampler:
+  x:
+    type: "uniform"
+    lower_bound: [0.01] #
+    upper_bound: [0.1]
+    range_ccoeff: [0.75, 3.14]
+    params_dim: 1
+
+  n_val_batches: 1 # Number of batches to generate for validation
+
+forward_model:
+  name: "advdiff"
+  dt: 0.02
+  dx: 0.1
+  f_evals: 50
+  n_grids: 20
+  noise_loc: 0.0
+  noise_std: 0.0 # for source simulations (x);
+  method: "euler" # rk4  

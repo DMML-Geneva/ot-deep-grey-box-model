@@ -1,0 +1,15 @@
+model_name: "knot"
+type: "det"
+phys_model: "advdiff" # for black-box model use none
+nnet_arch: "conv1dresnet"
+c_embed_dim: 10 # used for lstm
+adjoint_solver: 1 #0: false, 1: True
+ode_solver: "euler"
+activation: "elu" #leaky_relu, sofplus, elu.
+h_layers: 4 #[64, 64]
+
+
+
+discriminator:
+  type: "conv1dresnet" #conv1dresnet
+#  h_layers: [250,100,50]

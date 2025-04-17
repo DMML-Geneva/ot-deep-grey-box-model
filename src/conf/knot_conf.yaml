@@ -1,0 +1,77 @@
+
+# General parameters
+logging: "INFO"
+outdir: none
+
+# WANDB
+wandb_api_key: ""
+wandb_username: ""
+wandb_model_watch: false
+
+defaults: 
+ - data_sampler: pendulum_data_sampler # The `data_sampler` corresponds to the task to be solved: pendulum_data_sampler, reactdiff_data_sampler, advdiff_data_sampler
+ - model: pendulum_nnet # The model corresponds to the generative nnet model used: pendulum_nnet, reactdiff_nnet, advdiff_nnet
+
+seed: 13
+
+# Training parameters
+algorithm_name: "knot" #knot or wgans or gans
+cost: "mse"
+t_iters: 5
+disc_iters: 1 
+disc_increase: [false, 1000, 10] # (flag, k-iters, factor) # increment  disc_iters every k-iters by factor
+disc_warmup: false
+
+grad_regularizer: "w2l1" # gopt, w2l1, ksgan
+grad_penalty: 1
+clip_grad: [false, 1] # clip gradients for the generator (odenet)
+
+z_size: 1 # number z-samples of the generative model.
+z_dist: "uniform"
+z_dim: 0
+alpha: 1.0
+gamma: 1
+gamma_incr: false
+optimizer: "adam"
+lr: [1e-4,1e-4] # T_lr and f_lr, also 1e-5 works well
+betas_lr: [0.9,0.999] # betas
+
+pretrained_model: null
+
+batch_size: 64
+val_batch_size: 64
+val_metrics: ["mmd"]
+visualize: true
+
+# stopping criteria
+max_epochs: 400
+timeout_early_stop: 11.45 # in hours
+save_interval: 100 # save_interval should be matching with the interval of val_interval
+val_interval: 100
+x_max_sims_budg: -1 # -1 means no budget
+y_max_sims_budg: -1 # -1 means no budget
+
+MODEL_KEYS: [
+  "model_name",
+  "phys_model",
+  "cost",
+  "nnet_arch",
+  "activation",
+  "type",
+  "n_hidden_layers",
+  "h_layers",
+  "z_size",
+  "z_dim",
+  "z_dist",
+  "z_std",
+  "grad_regularizer",
+  "grad_penalty",
+  "t_iters",
+  "disc_iters",
+  "lr",
+  "max_epochs",
+  "batch_size",
+  "alpha",
+  "gamma",
+  "gamma_iters",
+  "discriminator"]

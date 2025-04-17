@@ -1,0 +1,47 @@
+
+name: "reactdiff"
+online: false
+# If online false, the following parameters are used
+datadir: "./datasets/forward_models/reactdiff/"
+dataname_train_labeled_sims: "training/61a0a9280e623987eeee47cb59a4d60a"
+dataname_train_unlabeled_y: "training/data_6d7ca3fe37f2ac0950134a4dc31a7b48" # 
+dataname_val_unlabeled_y: "testing/data_5c90bf1a6dd3956b1aac2e6ab52fe076.pt" # 
+dataname_test_x: ""
+dataname_test_y: ""
+lazy_loading: true
+max_train_size: -1
+
+# If online true, the following parameters are used
+init_cond_sampler:
+  type: "uniform" # uniform random variable in [0, 1]
+  lower_bound: [0, 0] #  x(0)
+  upper_bound: [1, 1] #  x(0)
+  extend_dim: [32,32]
+  shape: [2,32,32]
+  range_init: [0, 1] 
+
+phys_params_sampler:
+  x:
+    type: "uniform"
+    lower_bound: [0.001, 0.003] # [a, b]
+    upper_bound: [0.002, 0.007] # [a, b]
+    range_a: [0.001, 0.002]
+    range_b: [0.003, 0.007]
+    params_dim: 2
+
+  n_val_batches: 1 # Number of batches to generate for validation
+
+forward_model:
+  name: "reactdiff"
+  dt: none
+  dx: none
+  t_span: [0.0, 1.5]
+  mesh_step: 0.06451612903 # 2/31
+  f_evals: 16 # Correspond to len_episode
+  grid_size: 32
+  noise_loc: 0.0
+  noise_std: 0.0 # for source simulations (x); 
+  method: "rk4" # rk4 or dopri5
+  ode_stepsize: 0.001
+  atol: 1e-5
+  rtol: 1e-5
